@@ -4,9 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/skyerus/ims-api/pkg/customerror"
-	"github.com/skyerus/ims-api/pkg/logger"
-	"github.com/skyerus/ims-api/pkg/models"
+	"github.com/skyerus/history-api/pkg/customerror"
+	"github.com/skyerus/history-api/pkg/logger"
 )
 
 func respondJSON(w http.ResponseWriter, status int, payload interface{}) {
@@ -36,10 +35,6 @@ func respondBadRequest(w http.ResponseWriter) {
 
 func respondUnauthorizedRequest(w http.ResponseWriter) {
 	respondJSON(w, http.StatusUnauthorized, map[string]string{"message": "Unauthorized request"})
-}
-
-func respondForbiddenRequest(w http.ResponseWriter, role *models.Role) {
-	respondJSON(w, http.StatusForbidden, map[string]string{"message": "User doesn't have the role: " + role.Name})
 }
 
 func handleError(w http.ResponseWriter, customerror customerror.Error) {

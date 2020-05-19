@@ -2,14 +2,6 @@
 
 
 [[projects]]
-  digest = "1:76dc72490af7174349349838f2fe118996381b31ea83243812a97e5a0fd5ed55"
-  name = "github.com/dgrijalva/jwt-go"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
-  version = "v3.2.0"
-
-[[projects]]
   digest = "1:a3af33fd30536d9c5a7b6ad542390919e57c1125097a194c7b3d9904109a0611"
   name = "github.com/go-sql-driver/mysql"
   packages = ["."]
@@ -25,80 +17,12 @@
   revision = "75dcda0896e109a2a22c9315bca3bb21b87b2ba5"
   version = "v1.7.4"
 
-[[projects]]
-  digest = "1:f2ef06d4dba3dd33bd77c5bc076801c1d3159b64630fc0143f7e072ec127b7e6"
-  name = "github.com/jung-kurt/gofpdf"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "49e44c73f28fbc4ea0b011c7d4078d0a1523e44f"
-  version = "v12.13.5"
-
-[[projects]]
-  branch = "master"
-  digest = "1:c541f97012a790be2d4b86e7d1cba44bc16974e4d8cd8642f87417963bf3a379"
-  name = "github.com/skyerus/ims-api"
-  packages = [
-    "pkg/api",
-    "pkg/constant",
-    "pkg/crypto",
-    "pkg/customerror",
-    "pkg/email",
-    "pkg/email/emailrepo",
-    "pkg/email/emailservice",
-    "pkg/handler",
-    "pkg/logger",
-    "pkg/models",
-    "pkg/order",
-    "pkg/order/orderline",
-    "pkg/order/orderline/orderlinerepo",
-    "pkg/order/orderline/orderlineservice",
-    "pkg/order/orderrepo",
-    "pkg/order/orderservice",
-    "pkg/pdf",
-    "pkg/product",
-    "pkg/product/productrepo",
-    "pkg/product/productservice",
-    "pkg/purchaseorder",
-    "pkg/purchaseorder/purchaseorderrepo",
-    "pkg/purchaseorder/purchaseorderservice",
-    "pkg/role",
-    "pkg/supplier",
-    "pkg/supplier/supplierrepo",
-    "pkg/supplier/supplierservice",
-    "pkg/template",
-    "pkg/template/templaterepo",
-    "pkg/template/templateservice",
-    "pkg/user",
-    "pkg/user/userrepo",
-    "pkg/user/userservice",
-    "pkg/woocommerce",
-    "pkg/woocommerce/woocommercehandler",
-    "pkg/woocommerce/woocommerceservice",
-  ]
-  pruneopts = "UT"
-  revision = "9b7a8433dd98023f0d0e78802b44c290c3f45c4f"
-
-[[projects]]
-  branch = "master"
-  digest = "1:9d5b5d543996dd584da1db1e0de1926f3e4c3a8dba0fa2f8db70f3ebee2342e0"
-  name = "golang.org/x/crypto"
-  packages = [
-    "bcrypt",
-    "blowfish",
-  ]
-  pruneopts = "UT"
-  revision = "06a226fb4e3765ef3f48aa2852b401bc7b98e981"
-
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/go-sql-driver/mysql",
     "github.com/gorilla/mux",
-    "github.com/skyerus/ims-api/pkg/api",
-    "github.com/skyerus/ims-api/pkg/customerror",
-    "github.com/skyerus/ims-api/pkg/logger",
-    "github.com/skyerus/ims-api/pkg/models",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

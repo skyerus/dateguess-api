@@ -1,0 +1,25 @@
+package env
+
+import "os"
+
+// SetEnv - set app env
+func SetEnv() {
+	os.Setenv("ENV", "dev")
+	os.Setenv("CORS_ALLOW_ORIGIN", "http://history.local")
+	os.Setenv("API_DOMAIN", "history-api.local")
+	os.Setenv("DB_HOST", "mysql.history.local:3306")
+	os.Setenv("DB_USER", "history")
+	os.Setenv("DB_PASSWORD", "history")
+	os.Setenv("DB_NAME", "history")
+	os.Setenv("TZ", "Europe/London")
+	os.Setenv("DISCORD_WEBHOOK", "")
+	var sb strings.Builder
+	sb.WriteString(os.Getenv("DB_USER"))
+	sb.WriteString(":")
+	sb.WriteString(os.Getenv("DB_PASSWORD"))
+	sb.WriteString("@tcp(")
+	sb.WriteString(os.Getenv("DB_HOST"))
+	sb.WriteString(")/")
+	sb.WriteString(os.Getenv("DB_NAME"))
+	os.Setenv("DB_URL", sb.String())
+}
