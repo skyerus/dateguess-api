@@ -1,0 +1,12 @@
+ims-api
+vendor
+keys/RS256.key
+keys/RS256.key.pub
+pkg/env/main.go
+pkg/cmd/usercmd/usercmd
+pkg/cmd/setupcmd/setupcmd
+pkg/cmd/pdfcmd/pdfcmd
+pkg/cmd/emailcmd/emailcmd
+pkg/cmd/loggercmd/loggercmd
+public/pdf/*
+!public/pdf/.gitkeep
