@@ -27,8 +27,7 @@ func (w guardianHandler) SendRequest(request *http.Request) (*http.Response, cus
 	q.Set("show-fields", "bodyText")
 	request.Header.Add("Content-Type", "application/json")
 
-	url.RawQuery = q.Encode()
-	request.URL = url
+	request.URL.RawQuery = q.Encode()
 
 	var response *http.Response
 	client := &http.Client{}

@@ -36,6 +36,7 @@ func (a *App) Initialize(db *sql.DB) {
 func (a *App) setRouters(router *router) {
 	// Base routes
 	a.Router.HandleFunc("/", healthCheck).Methods("GET", "OPTIONS")
+	a.Router.HandleFunc("/api/random_article", router.randomArticle).Methods("GET", "OPTIONS")
 }
 
 // Run - Run the app

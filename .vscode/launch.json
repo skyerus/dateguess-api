@@ -2,14 +2,14 @@
   "version": "0.2.0",
   "configurations": [
         {
-              "name": "ims-api",
+              "name": "history-api",
               "type": "go",
               "request": "launch",
               "mode": "remote",
               "remotePath": "/go/src",
               "program": "/home/sgill/go/src",
               "port": 40000,
-              "host": "ims-api.local",
+              "host": "history-api.local",
               "showLog": true
         }
   ]

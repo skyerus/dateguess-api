@@ -7,5 +7,5 @@ import (
 
 // Service ...
 type Service interface {
-	RandomArticle(category string) (models.Article, customerror.Error)
+	RandomArticle(category string) (*models.GuardianResult, customerror.Error)
 }

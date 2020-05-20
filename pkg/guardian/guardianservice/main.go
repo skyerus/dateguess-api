@@ -11,7 +11,7 @@ import (
 	"github.com/skyerus/history-api/pkg/models"
 )
 
-const searchEndpoint string = "/content"
+const searchEndpoint string = "/search"
 
 // Search ...
 func Search(rawQuery string) (*models.GuardianContent, customerror.Error) {

@@ -13,6 +13,7 @@ func SetEnv() {
 	os.Setenv("DB_NAME", "history")
 	os.Setenv("TZ", "Europe/London")
 	os.Setenv("GUARDIAN_BASE_URL", "https://content.guardianapis.com")
+	os.Setenv("GUARDIAN_KEY", "")
 	os.Setenv("DISCORD_WEBHOOK", "")
 	var sb strings.Builder
 	sb.WriteString(os.Getenv("DB_USER"))
