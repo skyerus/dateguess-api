@@ -3,6 +3,7 @@ package api
 import (
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/skyerus/history-api/pkg/session/sessionrepo"
 	"github.com/skyerus/history-api/pkg/session/sessionservice"
@@ -28,10 +29,11 @@ func (router router) handleSession(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		cookie, err := r.Cookie("session")
 		if err != nil {
-			cookie = &http.Cookie{Name: "session", Value: r.RemoteAddr, Domain: os.Getenv("API_DOMAIN"), MaxAge: 7200, Path: "/"}
+			ipSplit := strings.Split(r.RemoteAddr, ":")
+			cookie = &http.Cookie{Name: "session", Value: ipSplit[0], Domain: os.Getenv("API_DOMAIN"), MaxAge: 7200, Path: "/"}
 			sessionRepo := sessionrepo.NewSessionRepo(router.db)
 			sessionService := sessionservice.NewSessionService(sessionRepo)
-			go sessionService.LogSession(r.RemoteAddr)
+			go sessionService.LogSession(ipSplit[0])
 			http.SetCookie(w, cookie)
 		}
 		h.ServeHTTP(w, r)
