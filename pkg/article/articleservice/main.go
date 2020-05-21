@@ -22,7 +22,7 @@ func NewArticleService() article.Service {
 
 func (as articleService) RandomArticle(category string) (*models.GuardianResult, customerror.Error) {
 	fromTime := randomTime()
-	toTime := fromTime.AddDate(0, 3, 0)
+	toTime := fromTime.AddDate(0, 6, 0)
 	formattedFromTime := fromTime.Format("2006-01-02")
 	formattedToTime := toTime.Format("2006-01-02")
 	u := url.URL{}
