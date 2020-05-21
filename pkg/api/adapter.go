@@ -1,10 +1,8 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 	"os"
-	"strings"
 
 	"github.com/skyerus/history-api/pkg/session/sessionrepo"
 	"github.com/skyerus/history-api/pkg/session/sessionservice"
@@ -28,14 +26,17 @@ func cors(h http.Handler) http.Handler {
 
 func (router router) handleSession(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if os.Getenv("env") == "dev" {
+			h.ServeHTTP(w, r)
+			return
+		}
 		cookie, err := r.Cookie("session")
 		if err != nil {
-			fmt.Println(r.Header.Get("X-Forwarded-For"))
-			ipSplit := strings.Split(r.RemoteAddr, ":")
-			cookie = &http.Cookie{Name: "session", Value: ipSplit[0], Domain: os.Getenv("API_DOMAIN"), MaxAge: 7200, Path: "/"}
+			forwardedIP := r.Header.Get("X-Forwarded-For")
+			cookie = &http.Cookie{Name: "session", Value: forwardedIP, Domain: os.Getenv("API_DOMAIN"), MaxAge: 7200, Path: "/"}
 			sessionRepo := sessionrepo.NewSessionRepo(router.db)
 			sessionService := sessionservice.NewSessionService(sessionRepo)
-			go sessionService.LogSession(ipSplit[0])
+			go sessionService.LogSession(forwardedIP)
 			http.SetCookie(w, cookie)
 		}
 		h.ServeHTTP(w, r)
