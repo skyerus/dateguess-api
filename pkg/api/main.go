@@ -30,6 +30,7 @@ func (a *App) Initialize(db *sql.DB) {
 	router := newRouter(db)
 	a.Router = mux.NewRouter()
 	a.Router.Use(cors)
+	a.Router.Use(router.handleSession)
 	a.setRouters(router)
 }
 
@@ -37,6 +38,7 @@ func (a *App) setRouters(router *router) {
 	// Base routes
 	a.Router.HandleFunc("/", healthCheck).Methods("GET", "OPTIONS")
 	a.Router.HandleFunc("/api/random_article", router.randomArticle).Methods("GET", "OPTIONS")
+	a.Router.HandleFunc("/api/log_visit", router.logVisit).Methods("GET", "OPTIONS")
 }
 
 // Run - Run the app
