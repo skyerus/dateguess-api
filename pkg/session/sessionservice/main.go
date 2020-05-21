@@ -4,8 +4,8 @@ import (
 	"time"
 
 	"github.com/skyerus/history-api/pkg/customerror"
+	"github.com/skyerus/history-api/pkg/logger"
 	"github.com/skyerus/history-api/pkg/session"
-	"github.com/skyerus/ims-api/pkg/logger"
 )
 
 type sessionService struct {
