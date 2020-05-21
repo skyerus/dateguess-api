@@ -1,0 +1,1 @@
+SELECT count( DISTINCT(`ip`) ) FROM `history`.`session`; /* Count number of unique IPs */
