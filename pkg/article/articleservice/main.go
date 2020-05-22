@@ -47,7 +47,7 @@ func (as articleService) RandomArticle(category string) (*models.GuardianResult,
 	case 1:
 		randPage = 1
 	default:
-		randPage = rand.Intn(guardianArticle.Response.Total-1) + 1
+		randPage = rand.Intn(guardianArticle.Response.Total) + 1
 	}
 	if randPage != 1 {
 		q.Set("page", strconv.Itoa(randPage))

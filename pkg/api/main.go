@@ -39,6 +39,7 @@ func (a *App) setRouters(router *router) {
 	a.Router.HandleFunc("/", healthCheck).Methods("GET", "OPTIONS")
 	a.Router.HandleFunc("/api/random_article", router.randomArticle).Methods("GET", "OPTIONS")
 	a.Router.HandleFunc("/api/log_visit", router.logVisit).Methods("GET", "OPTIONS")
+	a.Router.HandleFunc("/api/random_historical_event", router.randomHistoricalEvent).Methods("GET", "OPTIONS")
 }
 
 // Run - Run the app
