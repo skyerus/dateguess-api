@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"sort"
 	"strconv"
 
 	"github.com/skyerus/history-api/pkg/event/eventrepo"
@@ -32,6 +33,11 @@ func (router router) randomHistoricalEvents(w http.ResponseWriter, r *http.Reque
 	if customErr != nil {
 		handleError(w, customErr)
 		return
+	}
+	if r.URL.Query().Get("order") == "true" {
+		sort.Slice(*hes, func(i, j int) bool {
+			return (*hes)[i].Date.Before((*hes)[j].Date)
+		})
 	}
 
 	respondJSON(w, http.StatusOK, hes)
