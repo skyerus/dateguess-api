@@ -40,3 +40,34 @@ func (es eventService) RandomHistoricalEvent() (*models.HistoricalEvent, custome
 
 	return es.eventRepo.GetHistoricalEvent(randID)
 }
+
+func (es eventService) RandomHistoricalEvents(qty int) (*[]models.HistoricalEvent, customerror.Error) {
+	var historicalEvents []models.HistoricalEvent
+	i := 0
+	for i < qty {
+		historicalEvent, customErr := es.RandomHistoricalEvent()
+		if customErr != nil {
+			return nil, customErr
+		}
+		for !eventUnique(historicalEvent, &historicalEvents) {
+			historicalEvent, customErr = es.RandomHistoricalEvent()
+			if customErr != nil {
+				return nil, customErr
+			}
+		}
+		historicalEvents = append(historicalEvents, *historicalEvent)
+		i++
+	}
+
+	return &historicalEvents, nil
+}
+
+func eventUnique(he *models.HistoricalEvent, hes *[]models.HistoricalEvent) bool {
+	for _, historicalEvent := range *hes {
+		if he.ID == historicalEvent.ID {
+			return false
+		}
+	}
+
+	return true
+}

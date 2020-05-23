@@ -8,4 +8,5 @@ import (
 // Service ...
 type Service interface {
 	RandomHistoricalEvent() (*models.HistoricalEvent, customerror.Error)
+	RandomHistoricalEvents(qty int) (*[]models.HistoricalEvent, customerror.Error)
 }
