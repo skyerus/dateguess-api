@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  dateguess-api:
+    build:
+      context: ..
+      dockerfile: docker/dateguess-api/Dockerfile
+      target: base
+    command:
+      - reflex
+      - -d
+      - none
+      - -c
+      - /dateguess-api/docker/dateguess-api/reflex
+    entrypoint:
+      - /dateguess-api/wait-for.sh
+      - db:3306
+      - --
+    user: "${UID:-1000}:${GID:-1000}"
+    networks:
+      - dateguess
+    ports:
+      - "8080:8080"
+    volumes:
+      - ..:/dateguess-api
+    env_file: ../env/dateguess-api
+    depends_on:
+      - db
+
+networks:
+  dateguess:
+    name: dateguess

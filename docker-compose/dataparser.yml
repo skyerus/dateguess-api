@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  dataparser:
+    build:
+      context: ..
+      dockerfile: docker/dataparser/Dockerfile
+      target: base
+    command:
+      - /dateguess-api/wait-for.sh
+      - db:3306
+      - --
+      - go
+      - run
+      - /go/cmd/dataparser/main.go
+    user: "${UID:-1000}:${GID:-1000}"
+    networks:
+      - dateguess
+    volumes:
+      - ..:/dateguess-api
+    env_file: ../env/dateguess-api
+    depends_on:
+      - db
+
+networks:
+  dateguess:
+    name: dateguess

@@ -1,0 +1,11 @@
+LOG_LEVEL=debug
+ENV=dev
+ALLOW_ORIGIN=http://localhost:3000
+MYSQL_HOST=db
+MYSQL_USER=dateguess_api
+MYSQL_PASSWORD=password
+DB_PASSWORD=password
+TZ=Europe/London
+GUARDIAN_BASE_URL=https://content.guardianapis.com
+GUARDIAN_KEY=
+RAW_DATA_PATH=/dateguess-api/data/ThisDayInHistory.txt

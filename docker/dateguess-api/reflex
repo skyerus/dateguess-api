@@ -1,0 +1,1 @@
+-s -r \.go$ -R ^\.go/ -R _test\.go$ go run ./cmd/dateguess-api

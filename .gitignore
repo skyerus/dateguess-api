@@ -1,7 +1,3 @@
-history-api
-vendor
-keys/RS256.key
-keys/RS256.key.pub
-pkg/env/main.go
-pkg/cmd/dataparsercmd/dataparsercmd
+.go
 data/ThisDayInHistory.txt
+.idea
