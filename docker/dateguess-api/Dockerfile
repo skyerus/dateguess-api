@@ -26,6 +26,9 @@ WORKDIR /dateguess-api/cmd/dateguess-api
 
 RUN CGO_ENABLED=0 go build -o dateguess-api -ldflags -s
 
+RUN apk add ca-certificates
+RUN update-ca-certificates
+
 FROM base AS debug
 
 RUN go get github.com/go-delve/delve/cmd/dlv \
@@ -45,5 +48,6 @@ FROM scratch AS prod
 WORKDIR /dateguess-api
 
 COPY --from=build /dateguess-api/cmd/dateguess-api/dateguess-api       ./
+COPY --from=build /etc/ssl/certs       /etc/ssl/certs
 
 CMD ["/dateguess-api/dateguess-api"]
